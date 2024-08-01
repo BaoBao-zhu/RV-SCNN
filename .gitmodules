@@ -1,0 +1,3 @@
+[submodule "core-v-verif"]
+	path = core-v-verif
+	url = https://github.com/openhwgroup/core-v-verif
