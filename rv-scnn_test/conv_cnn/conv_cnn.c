@@ -67,6 +67,7 @@ int main(){
         input_matrix[i] = 1 + i%36;  //random input
     }
 
+
     for(int i=0;i<3*3*c_in*c_out;i++){
         filter_matrix[i] = -5 + i%7;   //random input
     }
