@@ -10,6 +10,9 @@
   **rv-scnn_test:**  C code for custom instrctions test of RV-SCNN<br>
 
 * ## Introduction
+  <img src="./Coprocessor.png"> 
+  <center><p>RV-SCNN Architecture</p></center>
+
   We have designed a RISC-V based processor – RV-SCNN, with customized instruction set for CNN and SNN Inference Acceleration. The RV-SCNN ISA incorporates multiple customized SIMD (Single Instruction Multiple Data) instructions to accelerate SNN and CNN inference computation, along with optimized memory allocation and access schemes. The benefits and impacts of the processor have been verified on various SNN and CNN image recognition tasks. The main contributions of this work are as follows:
 
     * The most commonly used operations in CNN/SNN computation, such as matrix multiplication, convolution, pooling,etc., are all optimized into SIMD instructions.
