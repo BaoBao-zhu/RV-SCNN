@@ -84,26 +84,26 @@ int main(){
     int t1 = record();
     L_SCNN(c_in,inside,oside*oside,0);
 	for(int i=0;i<chn_num;i++){
-		L_MODE(0,1,0,1);
-		L_MODE(0,2,0,1);
-		L_MODE(0,3,0,1);
-		L_MODE(0,4,0,1);
+        L_MODE(0,1,0,1);
+        L_MODE(0,2,0,1);
+        L_MODE(0,3,0,1);
+        L_MODE(0,4,0,1);
 
-		for(int m=0;m<tile;m++){
-			for(int n=0;n<tile;n++){
-				SCNN4x4(filter_matrix+36*c_in*i,input_matrix+n*2+m*2*inside);
+        for(int m=0;m<tile;m++){
+            for(int n=0;n<tile;n++){
+                SCNN4x4(filter_matrix+36*c_in*i,input_matrix+n*2+m*2*inside);
                 POOL(2);//cnn maxpool
 
                 POOL_WB_INT(&a,1);
-				out1[n + m*oside + 4*i*oside*oside] = a;
+                out1[n + m*oside + 4*i*oside*oside] = a;
                 POOL_WB_INT(&a,2);
                 out1[oside*oside + n + m*oside + 4*i*oside*oside] = a;
                 POOL_WB_INT(&a,3);
                 out1[2*oside*oside + n + m*oside + 4*i*oside*oside] = a;
                 POOL_WB_INT(&a,4);
                 out1[3*oside*oside + n + m*oside + 4*i*oside*oside] = a;
-			}
-		}
+            }
+        }
 	}
     int t2 = record();
     /////////////////////////////////////////////////////////////////////////////////////////
