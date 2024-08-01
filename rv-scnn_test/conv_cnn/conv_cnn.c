@@ -73,7 +73,7 @@ int main(){
 
     //set
     int oside = (inside - 2)/2;//after maxpool
-	int *out1 = (int *)calloc(oside*oside*c_out,sizeof(int));
+    int *out1 = (int *)calloc(oside*oside*c_out,sizeof(int));
     int chn_num =  c_out>>2;
     int tile = 1 + (inside-4)/2;
     int a=0;
