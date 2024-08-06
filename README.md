@@ -43,8 +43,8 @@
   | L_SCNN | 0000000 | M/N/Inside | K/Chn/Vth/shift | 000  | \ | 0x77 |
 
 * ### SCNN4x4
-  **RS1**: Header Address of Matrix A or Header Address of Convolution Input in Memory.<br>
-  **RS2**: Header Address of Matrix B or Header Address of Convolution Filter in Memory <br>
+  **RS1**: Header Address of Matrix A or Header Address of Convolution Filter in Memory.<br>
+  **RS2**: Header Address of Matrix B or Header Address of Convolution Input in Memory <br>
   | instr   | funct7  |  rs2 |  rs1 | func3 | rd   | opcode |
   | :-------: | :-------: | :----: | :----: | :----: | :-----: | :------: |
   | SCNN4x4 | 0000001 | addrB | addrA | 000  | \ | 0x77 |
@@ -73,5 +73,39 @@
   | instr   | funct7  |  rs2 |  rs1 | func3 | rd   | opcode |
   | :-------: | :-------: | :----: | :----: | :----: | :-----: | :------: |
   | POOL_WB | 0000010 | index | addr_out | 010  | \ | 0x77 |
+
+* ## Environment Set
+* ### STEP 1 : Basic Environment Set
+  Based on the core-v-verif project, you should complete the basic setup of the project environment, including the installation of Verilator, RISC-V toolchain, and so on.
+* ### STEP 2 : Replace the RTL
+  Run following command to replace the rtl with RV-SCNN.
+  ```
+  $ cp -rf rv-scnn_rtl  core-v-verif/core-v-cores/cv32e40p/rtl
+* ### STEP 2 : Custom Instrction Test
+  Taking running conv_cnn as an example, we need to add the corresponding test folder in core-v-verif.
+  ```
+  $ cd core-v-verif/cv32e40p/tests/programs/custom
+  $ mkdir conv_cnn
+  $ cp hello-world/test.yaml  conv_cnn/
+  ```
+  Come back to the rv-scnn_test folder.
+  ```
+  $ cd rv-scnn_test/conv_cnn
+  $ riscv32-unknown-elf-gcc -S -O3 conv_cnn.c
+  $ cp conv_cnn.s ../../core-v-verif/cv32e40p/tests/programs/custom/conv_cnn/conv_cnn.S
+  ```
+  Come back to the core-v-verif folder.
+  ```
+  $ cd core-v-verif/cv32e40p/sim/core
+  $ make veri-test TEST=conv_cnn
+  ```
+  Then you will see:
+  ```
+  $ inside:4 c_in:1024 c_out:4
+  $ error:0
+  $ cycle count::13426
+  $ GOPS:3.2949
+  ```
+
 
   
