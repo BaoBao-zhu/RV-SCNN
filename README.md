@@ -81,7 +81,7 @@
   Run following command to replace the rtl with RV-SCNN.
   ```
   $ cp -rf rv-scnn_rtl  core-v-verif/core-v-cores/cv32e40p/rtl
-* ### STEP 2 : Custom Instrction Test
+* ### STEP 3 : Custom Instrction Test
   Taking running conv_cnn as an example, we need to add the corresponding test folder in core-v-verif.
   ```
   $ cd core-v-verif/cv32e40p/tests/programs/custom

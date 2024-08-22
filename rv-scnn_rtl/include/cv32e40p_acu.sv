@@ -94,10 +94,12 @@ module cv32e40p_acu(
                             scnn_cnt <= scnn_cnt + 1;
                         end
                         else begin
-                            data_addr_scnn <= data_addr_scnn + gemm_M;
                             scnn_cnt <= scnn_cnt + 2;
                             if(scnn_cnt==6)  begin
                                 data_addr_scnn <= data_addr_scnn_A;
+                            end
+                            else begin
+                                data_addr_scnn <= data_addr_scnn + gemm_M;
                             end
                         end
                     end
